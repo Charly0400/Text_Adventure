@@ -16,9 +16,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject botonRespuesta;
 
     int indicePregunta = 0;
+
     // Start is called before the first frame update
     void Start()
     {
+        string nombre = "Toribio";
+        Debug.Log("Hola  yo me llamo " + nombre + "tengo " + 9.ToString() + "años");
+
+        Debug.Log($"Hola me llamo {nombre}, {9} años tengo");
+
+        string textoFormatear = "Soy {0} y tengo solo {1} años";
+        string mensaje = string.Format(textoFormatear, nombre, 9);
+        Debug.Log(mensaje);
+
         textoPreguntas.text = preguntas[0];
 
         palabrasGuardadas = new string[preguntas.Length];
@@ -56,7 +66,7 @@ public class GameManager : MonoBehaviour
     {
         //TODO mostrar un nuevo TextMeshPro que tenga toda la historia
         textoHistoria.gameObject.SetActive(true);
-        textoHistoria.text = historia;
+        textoHistoria.text = string.Format(historia, palabrasGuardadas);
 
 
         //TODO ocultar los elementos que no se utilizan
