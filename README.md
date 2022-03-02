@@ -3,7 +3,7 @@
 
 Text Adventure es un juego creadp en Unity3D para explicar el uso de TextMeshPro y bases de Anchors en Unity.
 
-Para probar el jeugo ingresa [aqui](https://lazcarnitas.itch.io/text-adventure).
+Para probar el jeugo ingresa [aqui](https://lazcarnitas.itch.io/text-adventure). 
 
 ## Instalación
 
@@ -27,9 +27,9 @@ Los objetivos de este juego se enumeran a continuación y se muestra su progreso
 
 - [x] Hacer core mechanics.
 - [x] Finalizar game loop.
-- [ ] Crear versiones web.
-- [ ] Publicar el juego.
-- [ ] Compartir el juego.
+- [x] Crear versiones web.
+- [x] Publicar el juego.
+- [x] Compartir el juego.
 
 ## Autores
 
