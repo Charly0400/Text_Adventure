@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -14,24 +15,26 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_InputField inputRespuesta;
     [SerializeField] TextMeshProUGUI textoHistoria;
     [SerializeField] GameObject botonRespuesta;
+    [SerializeField] GameObject botonReinicio;
 
     int indicePregunta = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        string nombre = "Toribio";
-        Debug.Log("Hola  yo me llamo " + nombre + "tengo " + 9.ToString() + "años");
+        //string nombre = "Toribio";
+        //Debug.Log("Hola  yo me llamo " + nombre + "tengo " + 9.ToString() + "años");
 
-        Debug.Log($"Hola me llamo {nombre}, {9} años tengo");
+        //Debug.Log($"Hola me llamo {nombre}, {9} años tengo");
 
-        string textoFormatear = "Soy {0} y tengo solo {1} años";
-        string mensaje = string.Format(textoFormatear, nombre, 9);
-        Debug.Log(mensaje);
+        //string textoFormatear = "Soy {0} y tengo solo {1} años";
+        //string mensaje = string.Format(textoFormatear, nombre, 9);
+        //Debug.Log(mensaje);
 
-        textoPreguntas.text = preguntas[0];
+        textoPreguntas.text = preguntas[indicePregunta];
 
         palabrasGuardadas = new string[preguntas.Length];
+        botonReinicio.SetActive(false);
         //palabrasGuardadas[0] = preguntas[0];
 
     }
@@ -44,7 +47,7 @@ public class GameManager : MonoBehaviour
         palabrasGuardadas[indicePregunta] = inputRespuesta.text;
 
         //Limpiar el texto para que el jugador pueda escribir de nuevo
-        inputRespuesta.text = null; // o "" ambas funcionan
+        inputRespuesta.text = ""; // o null ambas funcionan
 
         //Poner la siguiente pregunta;
         indicePregunta++;
@@ -67,11 +70,35 @@ public class GameManager : MonoBehaviour
         //TODO mostrar un nuevo TextMeshPro que tenga toda la historia
         textoHistoria.gameObject.SetActive(true);
         textoHistoria.text = string.Format(historia, palabrasGuardadas);
+        botonReinicio.SetActive(true);
 
 
         //TODO ocultar los elementos que no se utilizan
         textoPreguntas.gameObject.SetActive(false);
         botonRespuesta.SetActive(false);
         inputRespuesta.gameObject.SetActive(false);
+    }
+
+    public void ReiniciarJuego()
+    {
+        /*Forma de reiniciar todo*/
+
+        //indicePregunta = 0;
+        //palabrasGuardadas = new string[preguntas.Length];
+
+        //textoPreguntas.text = preguntas[indicePregunta];
+
+        //textoPreguntas.gameObject.SetActive(true);
+        //botonRespuesta.SetActive(true);
+        //inputRespuesta.gameObject.SetActive(true);
+
+        //textoHistoria.gameObject.SetActive(false);
+        botonReinicio.SetActive(false);
+
+        //Recargar la escena como estaba al proncipio
+        int indexEscena = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(indexEscena);
+
+
     }
 }
